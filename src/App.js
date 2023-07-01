@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 // Alias
 import Pizza from './components/Pizza.js'
+import AddPizza from './components/AddPizza';
 
 
 // Class based components 
@@ -23,6 +24,18 @@ class App extends Component{
         ]
     }
 
+    addCard = (details) => {
+      console.log(details);
+      // console.log(6 + Math.random()*10);
+      details.id = Math.floor(7 + Math.random()*10); // this.state.pizzaPlaces.length + 1
+      console.log(details);
+      // this.state.pizzaPlaces.push(details);
+      // ES6 feature: Spread operators : copy the elements from the source(Array, objects) [...oldArray, details]
+      this.setState({
+        pizzaPlaces: [...this.state.pizzaPlaces ,details]
+      })
+  
+    }
 
   deleteCard = (id) => {
         console.log(id);
@@ -44,7 +57,9 @@ class App extends Component{
       <div>
         <h1>{this.state.dynamicName}</h1>        
         {/* <Pizza brand={this.state.pizzaPlaces[3].name} description={this.state.pizzaPlaces[2].description}></Pizza> */}
-        <Pizza pizzaPlaces={this.state.pizzaPlaces} deleteCard={this.deleteCard}></Pizza>    
+        <Pizza pizzaPlaces={this.state.pizzaPlaces} deleteCard={this.deleteCard}></Pizza>
+        {/* <Pizza></Pizza> */}  
+        <AddPizza addCard={this.addCard}></AddPizza>  
       </div>
     
     )
